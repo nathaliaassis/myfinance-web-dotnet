@@ -2,10 +2,15 @@
 MyFinance - Projeto do Curso de Pós-Graduação em Engenharia de Software da PUC-MG
 
 
-## Commands to run application 
+## Comandos da aplicação
 
-Simple command to run the application:
+Comando simples para rodar aplicação:
 ``dotnet run``
 
-Command to run the application and keep it running after changes:
+Comando para rodar a aplicação e não precisar reinicializar após alterações:
+
 ``dotnet watch run``
+
+## DER - Diagrama Entidade Relacionamento
+
+<img src="./docs/diagrama.png" alt="der" />

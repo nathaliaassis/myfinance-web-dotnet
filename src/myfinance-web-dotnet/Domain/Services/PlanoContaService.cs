@@ -26,6 +26,7 @@ namespace myfinance_web_dotnet.Domain.Services
         {
           Id = item.Id,
           Descricao = item.Descricao,
+          Tipo = item.Tipo,
         };
 
         result.Add(itemPlanoConta);

@@ -8,6 +8,10 @@ obs:  Antes de executar os comandos para rodar a aplicaçãol, deve fazer o cami
 
 ``cd src/myfinance-web-dotnet``
 
+Comando para rodar o build da aplicação: 
+
+``dotnet build``
+
 Comando simples para rodar aplicação:
 ``dotnet run``
 

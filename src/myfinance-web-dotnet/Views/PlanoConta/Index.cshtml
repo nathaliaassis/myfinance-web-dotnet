@@ -21,12 +21,14 @@
             foreach (var item in (List<PlanoContaModel>)ViewBag.ListaPlanoConta)
             {
                 <tr>
-                    <td>@item.Id</td>
+                    <th>@item.Id</th>
                     <td>@item.Descricao</td>
                     <td>@item.Tipo</td>
                     <td>
-                        <button type="button" class="btn btn-outline-warning" onclick="Editar(@item.Id)">Editar</button>
-                        <button type="button" class="btn btn-outline-danger" onclick="Excluir(@item.Id)">Excluir</button>
+                        <button type="button" class="btn btn-outline-warning"
+                            onclick="Editar(@item.Id.ToString())">Editar</button>
+                        <button type="button" class="btn btn-outline-danger"
+                            onclick="Excluir(@item.Id.ToString())">Excluir</button>
                     </td>
                 </tr>
             }
@@ -36,10 +38,10 @@
 
 <script>
     function Editar(id) {
-        console.log('Editar function', id);
+        window.location.href = "/PlanoConta/Cadastro/" + id;
     }
 
     function Excluir(id) {
-        console.log('Excluir function', id);
+        window.location.href = "/PlanoConta/Excluir/" + id;
     }
 </script>

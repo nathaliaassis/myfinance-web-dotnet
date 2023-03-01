@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Plano de Contas";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="d-flex justify-content-end">
+    <a role="button" href="/PlanoConta/Cadastro" type="button" class="btn btn-primary">Criar item de Plano de Conta</a>
+</div>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Desrição</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in (List<PlanoContaModel>)ViewBag.ListaPlanoConta)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Descricao</td>
+                    <td>@item.Tipo</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning" onclick="Editar(@item.Id)">Editar</button>
+                        <button type="button" class="btn btn-outline-danger" onclick="Excluir(@item.Id)">Excluir</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script>
+    function Editar(id) {
+        console.log('Editar function', id);
+    }
+
+    function Excluir(id) {
+        console.log('Excluir function', id);
+    }
+</script>

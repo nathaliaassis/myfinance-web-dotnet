@@ -4,6 +4,10 @@ MyFinance - Projeto do Curso de Pós-Graduação em Engenharia de Software da PU
 
 ## Comandos da aplicação
 
+obs:  Antes de executar os comandos para rodar a aplicaçãol, deve fazer o caminho até a pasta 'myfinance-web-dotnet': 
+
+``cd src/myfinance-web-dotnet``
+
 Comando simples para rodar aplicação:
 ``dotnet run``
 

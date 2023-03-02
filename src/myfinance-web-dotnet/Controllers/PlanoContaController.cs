@@ -28,15 +28,31 @@ namespace myfinance_web_dotnet.Controllers
 
     [HttpGet]
     [Route("Cadastro")]
-    public IActionResult Cadastro()
+    [Route("Cadastro/{id}")]
+    public IActionResult Cadastro(int? id)
     {
+      if (id != null)
+      {
+        var registro = _planoContaService.RetornarRegistro((int)id);
+        return View(registro);
+      }
       return View();
     }
 
     [HttpPost]
     [Route("Cadastro")]
+    [Route("Cadastro/{id}")]
     public IActionResult Cadastro(PlanoContaModel model)
     {
+      _planoContaService.Salvar(model);
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    [Route("Excluir/{id}")]
+    public IActionResult Excluir(int id)
+    {
+      _planoContaService.Excluir(id);
       return RedirectToAction("Index");
     }
   }

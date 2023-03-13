@@ -11,20 +11,54 @@
     <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Desrição</th>
+            <th scope="col">Data</th>
+            <th scope="col">Histórico</th>
+            <th scope="col">Valor</th>
             <th scope="col">Tipo</th>
+            <th scope="col">Plano Conta</th>
             <th scope="col">Ações</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th>1</th>
-            <td>Descrição Qualquer</td>
-            <td>Despesa</td>
-            <td>
-                <button type="button" class="btn btn-outline-warning">Editar</button>
-                <button type="button" class="btn btn-outline-danger">Excluir</button>
-            </td>
-        </tr>
+        @{
+            foreach (var item in (List<TransacaoModel>)ViewBag.ListaTransacao)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Data</td>
+                    <td>@item.Historico</td>
+                    <td>@item.Valor</td>
+                    <td>@item.ItemPlanoConta.Tipo</td>
+                    <td>@item.ItemPlanoConta.Descricao</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning" onclick="Editar(@item.Id)">
+                            Editar
+                        </button>
+                        <button type="button" class="btn btn-outline-danger" onclick="AbrirModal(@item.Id)">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+            }    
+        }
     </tbody>
 </table>
+
+ <script>
+     function Editar(id) {
+        window.location.href = "/Transacao/Cadastro/" + id;
+    }
+
+    function Excluir(id) {
+        window.location.href = "/Transacao/Excluir/" + id;
+    }
+
+
+    function AbrirModal(id) {
+        $('#modalTransaction' + id).modal('show');
+    }
+
+    function FecharModal(id) {
+        $('#modalTransaction' + id).modal('hide');
+    }
+</script>

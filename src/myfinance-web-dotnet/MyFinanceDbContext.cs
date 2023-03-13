@@ -13,8 +13,8 @@ namespace myfinance_web_dotnet
     public DbSet<Transacao> Transacao { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      var connectionsString = @"Server=127.0.0.1,1433;Database=myfinance;User Id=sa;Password=Sql.123456;TrustServerCertificate=True";
-      optionsBuilder.UseSqlServer(connectionsString);
+      var connectionString = @"Server=127.0.0.1,1433;Database=myfinance;User Id=sa;Password=Sql.123456;TrustServerCertificate=True";
+      optionsBuilder.UseSqlServer(connectionString);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

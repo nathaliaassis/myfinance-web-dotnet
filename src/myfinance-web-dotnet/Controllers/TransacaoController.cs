@@ -40,7 +40,6 @@ namespace myfinance_web_dotnet.Controllers
       if (id != null)
       {
         model = _transacaoService.RetornarTransacao((int)id);
-
       }
       else
       {

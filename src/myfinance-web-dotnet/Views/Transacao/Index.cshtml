@@ -34,7 +34,7 @@
                         <button type="button" class="btn btn-outline-warning" onclick="Editar(@item.Id)">
                             Editar
                         </button>
-                        <button type="button" class="btn btn-outline-danger" onclick="AbrirModal(@item.Id)">
+                        <button type="button" class="btn btn-outline-danger" onclick="Excluir(@item.Id)">
                             Excluir
                         </button>
                     </td>
@@ -51,14 +51,5 @@
 
     function Excluir(id) {
         window.location.href = "/Transacao/Excluir/" + id;
-    }
-
-
-    function AbrirModal(id) {
-        $('#modalTransaction' + id).modal('show');
-    }
-
-    function FecharModal(id) {
-        $('#modalTransaction' + id).modal('hide');
     }
 </script>

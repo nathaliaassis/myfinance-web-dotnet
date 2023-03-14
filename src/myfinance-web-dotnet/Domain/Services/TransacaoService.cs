@@ -9,15 +9,12 @@ namespace myfinance_web_dotnet.Domain.Services
   public class TransacaoService : ITransacaoService
   {
     private readonly MyFinanceDbContext _dbContext;
-    private readonly IPlanoContaService _planoContaService;
 
     public TransacaoService(
-      MyFinanceDbContext dbContext,
-      IPlanoContaService planoContaService
+      MyFinanceDbContext dbContext
     )
     {
       _dbContext = dbContext;
-      _planoContaService = planoContaService;
     }
     public void Excluir(int id)
     {
@@ -68,7 +65,6 @@ namespace myfinance_web_dotnet.Domain.Services
         Historico = item.Historico,
         Valor = item.Valor,
         PlanoContaId = item.PlanoContaId,
-        PlanoContas = (IEnumerable<SelectListItem>)_planoContaService.ListarRegistros()
       };
 
       return itemTransacao;

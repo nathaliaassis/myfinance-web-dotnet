@@ -21,6 +21,7 @@ namespace myfinance_web_dotnet.Controllers
     {
       _logger = logger;
       _transacaoService = transacaoService;
+      _planoContaService = planoContaService;
       _metodoPagamentoService = metodoPagamentoService;
     }
 

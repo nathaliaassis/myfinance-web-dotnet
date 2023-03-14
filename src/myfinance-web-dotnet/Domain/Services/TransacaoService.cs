@@ -31,7 +31,6 @@ namespace myfinance_web_dotnet.Domain.Services
       var result = new List<TransacaoModel>();
       var dbSet = _dbContext.Transacao.Include(x => x.PlanoConta).Include(x => x.MetodoPagamento);
 
-
       foreach (var item in dbSet)
       {
         var itemTransacao = new TransacaoModel()
@@ -46,14 +45,18 @@ namespace myfinance_web_dotnet.Domain.Services
             Descricao = item.PlanoConta.Descricao,
             Tipo = item.PlanoConta.Tipo
           },
-          ItemMetodoPagamento = new MetodoPagamentoModel()
-          {
-            Id = item.MetodoPagamento.Id,
-            Tipo = item.MetodoPagamento.Tipo
-          },
           PlanoContaId = item.PlanoContaId,
           MetodoPagamentoId = item.MetodoPagamentoId
         };
+
+        if (item.MetodoPagamentoId != null)
+        {
+          itemTransacao.ItemMetodoPagamento = new MetodoPagamentoModel()
+          {
+            Id = item.MetodoPagamento?.Id,
+            Tipo = item.MetodoPagamento?.Tipo
+          };
+        }
 
         result.Add(itemTransacao);
       }

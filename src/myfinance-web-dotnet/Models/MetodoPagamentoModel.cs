@@ -8,6 +8,6 @@ namespace myfinance_web_dotnet.Models
   public class MetodoPagamentoModel
   {
     public int? Id { get; set; }
-    public string Tipo { get; set; }
+    public string? Tipo { get; set; }
   }
 }

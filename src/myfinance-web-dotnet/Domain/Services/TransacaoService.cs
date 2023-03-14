@@ -29,7 +29,8 @@ namespace myfinance_web_dotnet.Domain.Services
     public List<TransacaoModel> ListarTransacoes()
     {
       var result = new List<TransacaoModel>();
-      var dbSet = _dbContext.Transacao.Include(x => x.PlanoConta);
+      var dbSet = _dbContext.Transacao.Include(x => x.PlanoConta).Include(x => x.MetodoPagamento);
+
 
       foreach (var item in dbSet)
       {
@@ -45,7 +46,13 @@ namespace myfinance_web_dotnet.Domain.Services
             Descricao = item.PlanoConta.Descricao,
             Tipo = item.PlanoConta.Tipo
           },
-          PlanoContaId = item.PlanoContaId
+          ItemMetodoPagamento = new MetodoPagamentoModel()
+          {
+            Id = item.MetodoPagamento.Id,
+            Tipo = item.MetodoPagamento.Tipo
+          },
+          PlanoContaId = item.PlanoContaId,
+          MetodoPagamentoId = item.MetodoPagamentoId
         };
 
         result.Add(itemTransacao);
@@ -65,6 +72,7 @@ namespace myfinance_web_dotnet.Domain.Services
         Historico = item.Historico,
         Valor = item.Valor,
         PlanoContaId = item.PlanoContaId,
+        MetodoPagamentoId = item.MetodoPagamentoId
       };
 
       return itemTransacao;
@@ -80,7 +88,8 @@ namespace myfinance_web_dotnet.Domain.Services
         Data = model.Data,
         Historico = model.Historico,
         Valor = model.Valor,
-        PlanoContaId = model.PlanoContaId
+        PlanoContaId = model.PlanoContaId,
+        MetodoPagamentoId = model.MetodoPagamentoId,
       };
 
       if (entidade.Id == null)

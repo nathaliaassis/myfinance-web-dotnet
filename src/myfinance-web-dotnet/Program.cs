@@ -13,6 +13,7 @@ builder.Services.AddScoped<IPlanoContaService, PlanoContaService>();
 
 builder.Services.AddScoped<ITransacaoService, TransacaoService>();
 
+builder.Services.AddScoped<IMetodoPagamentoService, MetodoPagamentoService>();
 
 var app = builder.Build();
 

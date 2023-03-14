@@ -11,6 +11,8 @@ namespace myfinance_web_dotnet
   {
     public DbSet<PlanoConta> PlanoConta { get; set; }
     public DbSet<Transacao> Transacao { get; set; }
+    public DbSet<MetodoPagamento> MetodoPagamento { get; internal set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
       var connectionString = @"Server=127.0.0.1,1433;Database=myfinance;User Id=sa;Password=Sql.123456;TrustServerCertificate=True";

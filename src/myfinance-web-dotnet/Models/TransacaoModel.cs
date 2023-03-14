@@ -13,9 +13,10 @@ namespace myfinance_web_dotnet.Models
 
     public int PlanoContaId { get; set; }
 
-    // public string? MetodoPagamento { get; set; }
-    // public string? Tipo { get; set; }
+    public int MetodoPagamentoId { get; set; }
     public PlanoContaModel ItemPlanoConta { get; set; }
+    public MetodoPagamentoModel ItemMetodoPagamento { get; set; }
     public IEnumerable<SelectListItem>? PlanoContas { get; set; }
+    public IEnumerable<SelectListItem>? MetodosPagamento { get; set; }
   }
 }

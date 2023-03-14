@@ -18,7 +18,7 @@
         </div>
         <div class="mb-3">
         <label class="form-label">Plano de Conta</label>
-        @Html.DropDownListFor(m => m.PlanoContaId, Model.PlanoContas, new { @class="form-select"})
+        @Html.DropDownListFor(m => m.PlanoContaId, Model.PlanoContas, new { @class="form-select", @onchange="MostrarCampoMetodoPagamento(this.options[this.selectedIndex].value)"} )
         </div>
         <div class="mb-3">
             <label class="form-label">Histórico</label>
@@ -28,6 +28,14 @@
             <a role="button" href="/Transacao/Index" type="button" class="btn btn-secondary">Cancelar</a>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
-
     </div>
 </form>
+
+<script>
+    function MostrarCampoMetodoPagamento(valor) {
+        console.log(valor);
+        @* var registro = _planoContaService.RetornarRegistro((int)valor);
+
+        console.log(registro) *@
+    }
+</script>

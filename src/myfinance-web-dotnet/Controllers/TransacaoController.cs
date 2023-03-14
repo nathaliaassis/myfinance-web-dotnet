@@ -10,17 +10,18 @@ namespace myfinance_web_dotnet.Controllers
   {
     private readonly ILogger<TransacaoController> _logger;
     private readonly ITransacaoService _transacaoService;
-
     private readonly IPlanoContaService _planoContaService;
+    private readonly IMetodoPagamentoService _metodoPagamentoService;
     public TransacaoController(
       ILogger<TransacaoController> logger,
       ITransacaoService transacaoService,
-      IPlanoContaService planoContaService
+      IPlanoContaService planoContaService,
+      IMetodoPagamentoService metodoPagamentoService
       )
     {
       _logger = logger;
       _transacaoService = transacaoService;
-      _planoContaService = planoContaService;
+      _metodoPagamentoService = metodoPagamentoService;
     }
 
     [HttpGet]
@@ -46,8 +47,10 @@ namespace myfinance_web_dotnet.Controllers
         model.Data = DateTime.Now;
       }
       var listaPlanoContas = _planoContaService.ListarRegistros();
+      var listaMetodosPagamento = _metodoPagamentoService.ListarMetodos();
 
       model.PlanoContas = new SelectList(listaPlanoContas, "Id", "Descricao");
+      model.MetodosPagamento = new SelectList(listaMetodosPagamento, "Id", "Tipo");
 
       return View(model);
     }

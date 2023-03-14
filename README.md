@@ -1,17 +1,17 @@
 # myfinance-web-dotnet
 
-MyFinance - Projeto do Curso de Pós-Graduação em Engenharia de Software da PUC-MG
+MyFinance - Projeto do Curso de Pós-Graduação em Engenharia de Software da PUC-MG. MyFinance é um sitema para registro de receitas e despesas do usuário.
 
 ## Tecnologias
 
-O projeto contempla as Seguintes tecnologias:
+O projeto contempla as seguintes tecnologias:
 
 - ASP .NET
 - SQL
 
 ## Comandos da aplicação
 
-obs: Antes de executar os comandos para rodar a aplicaçãol, deve fazer o caminho até a pasta 'myfinance-web-dotnet':
+obs: Antes de executar os comandos para rodar a aplicação, deve fazer o caminho até a pasta 'myfinance-web-dotnet':
 
 `cd src/myfinance-web-dotnet`
 
@@ -26,11 +26,68 @@ Comando para rodar a aplicação e não precisar reinicializar após alteraçõe
 
 `dotnet watch run`
 
-Comando para rodar o docker do banco de dados
-`docker-compose `
-
 ## DER - Diagrama Entidade Relacionamento
 
 <img src="./docs/diagrama.png" alt="der" />
 
-##
+## Feature Extra: Implementar método de pagamento quando a transação for despesa
+
+- Criar a tabela no banco de dados metodopagamento com as colunas Id e Tipo:
+
+  ```sql
+    create table metodopagamento(
+      id int identity(1,1) not null,
+      tipo varchar(50) not null,
+    );
+  ```
+
+- Popular tabela metodopagamento com os tipos de pagamento: Crédito, débido, pix, boleto, Dinheiro:
+
+  ```sql
+    insert into metodopagamento
+      (tipo)
+      values
+        ('Dinheiro'),
+        ('Crédito'),
+        ('Débito'),
+        ('Pix'),
+        ('Boleto'),
+  ```
+
+- Criar uma FK na tabela Transacao apontando para metodoPagamento(Id):
+
+  ```sql
+    ALTER TABLE transacao
+    ADD metodopagamentoid INT
+    REFERENCES metodopagamento(id);
+  ```
+
+- Criar model e entidade de MetodoPagamento
+- Adicionar contexto de MetodoPagamento na configuração de banco de dados da aplicação:
+
+  ```c#
+    public DbSet<MetodoPagamento> MetodoPagamento { get; internal set; }
+  ```
+
+- Criar Interface de serviço IMetodoPagamento;
+- Criar Servico de MetodoPagamento;
+- Adicionar serviço no arquivo Program.cs:
+
+  ```c#
+    builder.Services.AddScoped<IMetodoPagamentoService, MetodoPagamentoService>();
+  ```
+
+- Atualizar serviço de transação:
+  - Fazer include de MetodoPagamento no método ListarTransacoes no contexto que retorna lista
+  - Adicionar objeto MetodoPagamento no objeto ItemTransacao no foreach do método ListarTransacoes
+  - Adicionar MetodoPagamento Id no itemTransacao dos métodos RetornarTransacao e Salvar
+- Atualizar controller de transação:
+  - Fazer injeção de dependencia de serviço IMetodoPagamentoService
+  - Na rota get de cadastro adicionar variavel listaMetodosPagamento:
+    ```c#
+      var listaMetodosPagamento = _metodoPagamentoService.ListarMetodos();
+    ```
+  - Na rota get de cadastro adicionar a model a lista de MetodosPagamento:
+  ```c#
+    model.MetodosPagamento = new SelectList(listaMetodosPagamento, "Id", "Tipo");
+  ```

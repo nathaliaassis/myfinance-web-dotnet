@@ -55,5 +55,12 @@ namespace myfinance_web_dotnet.Controllers
       _planoContaService.Excluir(id);
       return RedirectToAction("Index");
     }
+
+    [HttpGet]
+    [Route("ObtemTipoPlanoConta/{id}")]
+    public string ObtemTipoPlanoConta(int id)
+    {
+      return _planoContaService.RetornarRegistro(id).Tipo;
+    }
   }
 }

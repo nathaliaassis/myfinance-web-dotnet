@@ -20,9 +20,9 @@
         <label class="form-label">Plano de Conta</label>
         @Html.DropDownListFor(m => m.PlanoContaId, Model.PlanoContas, new { @class="form-select", @onchange="MostrarCampoMetodoPagamento(this.options[this.selectedIndex].value)"} )
         </div>
-        <div class="mb-3">
+        <div class="mb-3" id="bloco-pagamento">
         <label class="form-label">Método de Pagamento</label>
-        @Html.DropDownListFor(m => m.MetodoPagamentoId, Model.MetodosPagamento, new { @class="form-select", @onchange="MostrarCampoMetodoPagamento(this.options[this.selectedIndex].value)"} )
+        @Html.DropDownListFor(m => m.MetodoPagamentoId, Model.MetodosPagamento, new { @class="form-select" })        
         </div>
         <div class="mb-3">
             <label class="form-label">Histórico</label>
@@ -36,5 +36,30 @@
 </form>
 
 <script>
+  function MostrarCampoMetodoPagamento(valor) {
+    var origem = window.origin;
+    var url = `${origem}/PlanoConta/ObtemTipoPlanoConta/${valor}`;
+    const xhr = new XMLHttpRequest();
+
+    const componenteMetodoPagamento = document.getElementById('bloco-pagamento')
     
+    xhr.open("GET", url, true);
+    xhr.onload = (e) => {
+        if(xhr.readyState === 4) {
+            if(xhr.status === 200) {
+                if(xhr.responseText === 'D'){ // verifica se é despesa
+                    componenteMetodoPagamento.classList.remove('d-none');
+                }else { 
+                    componenteMetodoPagamento.classList.add('d-none');
+                }
+            } else {
+                alert(xhr.statusText)
+            }
+        }
+    }
+    xhr.onerror = (e) => {
+        alert(xhr.statusText)
+    };
+    xhr.send(null)
+  }  
 </script>

@@ -61,9 +61,13 @@
         xhr.send(null)
     }  
 
-    var id = document.getElementById('Id').value;
+    function VerificaId () {
+        var id = document.getElementById('Id').value;
 
-    if(id) {
-        MostrarEsconderCampoMetodoPagamento(id);
-    } 
+        if(id) {
+            MostrarEsconderCampoMetodoPagamento(id);
+        } 
+    }
+
+    VerificaId();
 </script>

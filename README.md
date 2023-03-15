@@ -32,6 +32,8 @@ Comando para rodar a aplicação e não precisar reinicializar após alteraçõe
 
 ## Feature Extra: Implementar método de pagamento quando a transação for despesa
 
+### Passo a Passo
+
 - Criar a tabela no banco de dados metodopagamento com as colunas Id e Tipo:
 
   ```sql
@@ -91,3 +93,8 @@ Comando para rodar a aplicação e não precisar reinicializar após alteraçõe
   ```c#
     model.MetodosPagamento = new SelectList(listaMetodosPagamento, "Id", "Tipo");
   ```
+- Criar nova rota na PlanoController: ObtemTipoPlanoConta/{id} para verificar tipos e realizar condições para mostrar/esconder bloco na tela de cadastro/edição de transação
+
+- Implementar condição na tela de cadastro/edição de cadastro/edição de transação
+
+### Evidências da Feature Extra

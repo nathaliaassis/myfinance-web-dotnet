@@ -16,6 +16,7 @@
             <th scope="col">Valor</th>
             <th scope="col">Tipo</th>
             <th scope="col">Plano Conta</th>
+            <th scope="col">Método de Pagamento</th>
             <th scope="col">Ações</th>
         </tr>
     </thead>
@@ -30,6 +31,7 @@
                     <td>@item.Valor</td>
                     <td>@item.ItemPlanoConta.Tipo</td>
                     <td>@item.ItemPlanoConta.Descricao</td>
+                    <td>@item.ItemMetodoPagamento?.Tipo</td>
                     <td>
                         <button type="button" class="btn btn-outline-warning" onclick="Editar(@item.Id)">
                             Editar

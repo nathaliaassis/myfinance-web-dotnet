@@ -21,6 +21,10 @@
         @Html.DropDownListFor(m => m.PlanoContaId, Model.PlanoContas, new { @class="form-select", @onchange="MostrarCampoMetodoPagamento(this.options[this.selectedIndex].value)"} )
         </div>
         <div class="mb-3">
+        <label class="form-label">Método de Pagamento</label>
+        @Html.DropDownListFor(m => m.MetodoPagamentoId, Model.MetodosPagamento, new { @class="form-select", @onchange="MostrarCampoMetodoPagamento(this.options[this.selectedIndex].value)"} )
+        </div>
+        <div class="mb-3">
             <label class="form-label">Histórico</label>
             <input type="text" class="form-control" id="Historico" asp-for="Historico" />
         </div>
@@ -32,7 +36,5 @@
 </form>
 
 <script>
-    function MostrarCampoMetodoPagamento(valor) {
-        console.log(valor);
-    }
+    
 </script>

@@ -36,10 +36,9 @@
 </form>
 
 <script>
-   
-    function MostrarEsconderCampoMetodoPagamento(valor) {
+    function MostrarEsconderCampoMetodoPagamento(id) {
         var origem = window.origin;
-        var url = `${origem}/PlanoConta/ObtemTipoPlanoConta/${valor}`;
+        var url = `${origem}/PlanoConta/ObtemTipoPlanoConta/${id}`;
         const xhr = new XMLHttpRequest();
         const componenteMetodoPagamento = document.getElementById('bloco-pagamento')
         xhr.open("GET", url, true);
@@ -62,12 +61,9 @@
         xhr.send(null)
     }  
 
-    function VerificaSeIdExiste() {
-        var id = @Model.Id;
+    var id = document.getElementById('Id').value;
 
-        if(id) {
-           MostrarEsconderCampoMetodoPagamento(id);
-        }
-    }
-    VerificaSeIdExiste();
+    if(id) {
+        MostrarEsconderCampoMetodoPagamento(id);
+    } 
 </script>

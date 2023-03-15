@@ -100,6 +100,11 @@ Comando para rodar a aplicação e não precisar reinicializar após alteraçõe
 ### Evidências da Feature Extra
 
 _OBS: Na descrição da tarefa mostra radiobuttons para selecionar o tipo de transação ('receita' ou 'despesa'), não achamos necessário mostrar esse campo, já que essa informação é passada no momento de criação do item Plano de contas, então quando o usuário selecionar o plano de contas na criação/edição de transação a aplicação já consegue entender o tipo dessa transação para mostrar ou não o campo método de pagamento._
+
+#### Receita
+
 <img src="./docs/receita.png" alt="der" />
+
+#### Despesa
 
 <img src="./docs/despesa.png" alt="der" />

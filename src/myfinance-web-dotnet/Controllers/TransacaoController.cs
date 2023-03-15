@@ -61,6 +61,19 @@ namespace myfinance_web_dotnet.Controllers
     [Route("Cadastro/{id}")]
     public IActionResult Cadastro(TransacaoModel model)
     {
+      var transaction = model;
+
+      if (model.PlanoContaId != null)
+      {
+        var planoContaTipo = _planoContaService.RetornarRegistro(model.PlanoContaId).Tipo;
+
+        var receita = "R";
+        if (planoContaTipo.ToString() == receita.ToString())
+        {
+          model.MetodoPagamentoId = null;
+          model.ItemMetodoPagamento = null;
+        }
+      }
       _transacaoService.Salvar(model);
       return RedirectToAction("Index");
     }

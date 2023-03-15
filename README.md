@@ -30,6 +30,20 @@ Comando para rodar a aplicação e não precisar reinicializar após alteraçõe
 
 <img src="./docs/diagrama.png" alt="der" />
 
+## Visão geral do sistema
+
+### Tela de Plano de contas
+
+Nessa Tela o usuário pode criar, editar, excluir e ver plano de contas.
+<img src="./docs/CriarItemPlanoDeConta.png" alt="registrar plano de conta" />
+<img src="./docs/PlanoDeContas.png" alt="plano de conta" />
+
+### Tela de Transações
+
+Nessa Tela o usuário pode criar, editar, excluir e ver transações.
+<img src="./docs/RegistrarTransacaoFinanceira.png" alt="registrar transacao" />
+<img src="./docs/TransacoesFinanceiras.png" alt="transacao financeira" />
+
 ## Feature Extra: Implementar método de pagamento quando a transação for despesa
 
 ### Passo a Passo
